@@ -1,9 +1,9 @@
 <template>
   <input
     type="text"
-    v-model="search"
+    v-model.lazy="search"
     class="form-control"
-    @keypress="getMovies(this.search)"
+    v-debounce="delay"
     placeholder="Search..."
   />
   <div class="container">
@@ -54,6 +54,7 @@
 <script>
 import Movies from "@/services/Movies";
 import ModalMovies from "@/components/ModalMovies";
+import { directive } from "v-debounce";
 
 export default {
   name: "CardMovies",
@@ -65,11 +66,12 @@ export default {
       movies: null,
       search: "",
       id: "",
+      delay: 1000,
     };
   },
   methods: {
-    getMovies(search) {
-      Movies.getMovies(search).then((response) => {
+    getMovies() {
+      Movies.getMovies(this.search).then((response) => {
         this.movies = response.data.Search;
       });
     },
@@ -77,6 +79,14 @@ export default {
       this.id = id;
       console.log(this.id);
     },
+  },
+  watch: {
+    search() {
+      this.getMovies();
+    },
+  },
+  directives: {
+    debounce: directive,
   },
 };
 </script>
@@ -94,7 +104,7 @@ export default {
   box-shadow: #000 0px 0px 10px;
   border: 2px solid transparent;
   align-items: center;
-  margin: 1rem 0rem;
+  margin: 1rem auto;
 }
 
 .card-footer {
