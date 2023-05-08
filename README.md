@@ -1,5 +1,7 @@
 # Moviefy
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f58a009aa0024a0f87253272bf301bd4)](https://app.codacy.com/gh/Diego-18/Moviefy?utm_source=github.com&utm_medium=referral&utm_content=Diego-18/Moviefy&utm_campaign=Badge_Grade)
+
 <img src="https://cdn-icons-png.flaticon.com/512/3439/3439583.png" alt="real.time.chat" width="40" height="40">
 
 It is a platform connected to the OMDb API to display movie information.
